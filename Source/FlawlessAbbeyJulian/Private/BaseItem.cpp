@@ -1,5 +1,19 @@
+/**
+ * @file BaseItem.cpp
+ * @brief Implements the ABaseItem class, providing core logic for interactable items in the game.
+ *
+ * This file defines the constructor and member functions for ABaseItem, including
+ * initialization, rotation and zoom manipulation, and state reset logic.
+ */
+
 #include "BaseItem.h"
 
+/**
+ * @brief Default constructor for ABaseItem.
+ *
+ * Initializes the root scene component, static mesh component, and scene capture component.
+ * Sets up component attachment hierarchy.
+ */
 ABaseItem::ABaseItem()
 {
 	RootComponent = CreateDefaultSubobject<USceneComponent>(TEXT("Root"));
@@ -11,6 +25,11 @@ ABaseItem::ABaseItem()
 	Capture->SetupAttachment(RootComponent);
 }
 
+/**
+ * @brief Called when the game starts or when spawned.
+ *
+ * Initializes the default rotation and zoom values for the item.
+ */
 void ABaseItem::BeginPlay()
 {
 	Super::BeginPlay();
@@ -18,6 +37,10 @@ void ABaseItem::BeginPlay()
 	SetDefaultZoom();
 }
 
+/**
+ * @brief Updates the item's rotation based on UI input.
+ * @param DeltaUI The change in UI input to apply to the rotation (X and Y axes).
+ */
 void ABaseItem::UpdateRotation(const FVector2D DeltaUI)
 {
 	if (IsValid(Mesh))
@@ -26,6 +49,10 @@ void ABaseItem::UpdateRotation(const FVector2D DeltaUI)
 	}
 }
 
+/**
+ * @brief Updates the item's zoom based on input.
+ * @param DeltaZoom The amount to adjust the zoom by.
+ */
 void ABaseItem::UpdateZoom(const float DeltaZoom)
 {
 	if (IsValid(Capture) && ValidZoomOffset(DeltaZoom))
@@ -34,6 +61,9 @@ void ABaseItem::UpdateZoom(const float DeltaZoom)
 	}
 }
 
+/**
+ * @brief Resets the item's rotation to its default value.
+ */
 void ABaseItem::ResetRotation()
 {
 	if (IsValid(Mesh))
@@ -42,6 +72,9 @@ void ABaseItem::ResetRotation()
 	}
 }
 
+/**
+ * @brief Resets the item's zoom to its default value.
+ */
 void ABaseItem::ResetZoom()
 {
 	if (IsValid(Capture))
@@ -51,11 +84,19 @@ void ABaseItem::ResetZoom()
 	}
 }
 
+/**
+ * @brief Moves the item to its hidden position.
+ */
 void ABaseItem::Hidde()
 {
 	SetActorLocation(HiddenPosition);
 }
 
+/**
+ * @brief Checks if the given zoom offset is valid based on the zoom limit.
+ * @param ZoomOffset The zoom offset to validate.
+ * @return True if the zoom offset is within the allowed limit, false otherwise.
+ */
 bool ABaseItem::ValidZoomOffset(const float& ZoomOffset) const
 {
 	bool bValid = false;
@@ -68,6 +109,9 @@ bool ABaseItem::ValidZoomOffset(const float& ZoomOffset) const
 	return bValid;
 }
 
+/**
+ * @brief Sets the default rotation value based on the current mesh rotation.
+ */
 void ABaseItem::SetDefaultRotation()
 {
 	if (IsValid(Mesh))
@@ -76,6 +120,9 @@ void ABaseItem::SetDefaultRotation()
 	}
 }
 
+/**
+ * @brief Sets the default zoom value based on the current capture component location.
+ */
 void ABaseItem::SetDefaultZoom()
 {
 	if (IsValid(Capture))
