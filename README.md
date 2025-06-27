@@ -1,5 +1,44 @@
 # FlawlessAbbeyJulian
 
+Note: This is the test I did for Flawless Abbey on 05/14/2025.
+
+Final result: Fail
+
+	Overview
+		You’ll build a small interactive inventory system with one sample interaction and a simple dialogue trigger.
+
+	Goals
+		1) Create a basic inventory UI
+		2) Implement a drag-and-drop slot system
+		3) Support different item types (2D and 3D)
+		4) Trigger a sample interaction with dialogue
+
+	Assignment Tasks
+		1) Inventory System
+			- Implement a basic pickup system where objects placed in the world can be added to the inventory 
+			after the player interacts with them.
+			- Create an Inventory UI with 4 item slots and a viewport slot.
+			- Implement a drag-and-drop mechanism between slots and the viewport slot.
+				- When an item is dragged to the viewport slot of the inventory:
+					- If it’s a 2D item, display a larger version.
+					- If it’s a 3D item, display the 3d model in the world inside the widget. Implement 
+					logic to control the rotation and zooming of the shown object.
+			- Include a close button and ESC key logic to hide the inventory.
+
+		2) Simple Dialogue Trigger
+			- Place an interactable actor in the world.
+			- When interacted with, trigger a dialogue box with a short message.
+				- The dialogue box should be possible to be moved forward, each skip displaying the next 
+				segment of text.
+				- When displaying the final part, the player should be able to close the dialogue box.
+
+	Technical Requirements
+		- Unreal Engine 5.4 (Blueprints or C++ – your choice)
+		- Provide a short README file explaining:
+			- Your design decisions
+			- How to test the features
+		- You can use simple placeholder assets (textures/meshes) or Unreal’s starter content.
+
 Instructions
 
 	World Scene requirements
